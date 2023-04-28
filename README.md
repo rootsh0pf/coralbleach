@@ -7,11 +7,11 @@ I used it for my research and hope it will be helpful for others too.
  1. Install the python library "opencv"
  2. Paint your leaf photos using EXACTLY the following colours (R, G, B):
  
-       Scales:             Magenta (255, 000, 255)
+       Calibration objects:  Magenta (255, 000, 255)
        
-       Healthy leaf area:  Blue    (000, 000, 255)
+       Healthy leaf area:    Blue    (000, 000, 255)
        
-       Damaged area:       Red     (255, 000, 000)
+       Damaged area:         Red     (255, 000, 000)
        
        (The "fuzzy select"/magic wand tool of GIMP is super helpful for selecting regions of similar colour.)
        
