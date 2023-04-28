@@ -1,7 +1,8 @@
 # folderleaf
-Python script to automatically calculate leaf sizes on photos by counting pixels of a certain colour
+This python script automatically counts pixels of certain colours from all photos in a folder and calculates leaf area and leaf damage.
+I used it for my research and hope it will be helpful for others too.
 
-# Preparations:
+# Preparations
  1. Take photos of leaves and place a calibration object of known size in the image (e.g. a black 1 x 1 cm square)
  1. Install the python library "opencv"
  2. Paint your leaf photos using EXACTLY the following colours (R, G, B):
