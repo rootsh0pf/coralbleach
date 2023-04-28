@@ -16,7 +16,9 @@ I used it for my research and hope it will be helpful for others too.
        (The "fuzzy select"/magic wand tool of GIMP is super helpful for selecting regions of similar colour.)
        
  3. Save images in PNG file format
- 4. Download the script "folderleaf.py" and run it in the folder containing the photos
+ 4. Download the script "folderleaf.py"
+ 4. Edit the script's "settings" section and set the size of your calibration object
+ 5. Run the script in the folder containing the photos
  5. It will create a CSV file with the results called "leaf_damage.csv"
 
 ## Credits
