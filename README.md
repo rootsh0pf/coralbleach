@@ -1,4 +1,4 @@
-# folderleaf
+# Folderleaf
 This python script automatically counts pixels of certain colours from all photos in a folder and calculates leaf area and leaf damage.
 I used it for my research and hope it will be helpful for others too.
 
