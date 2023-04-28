@@ -18,3 +18,6 @@ I used it for my research and hope it will be helpful for others too.
  3. Save images in PNG file format
  4. Download the script "folderleaf.py" and run it in the folder containing the photos
  5. It will create a CSV file with the results called "leaf_damage.csv"
+
+## Credits
+Thanks to [LucxMangaJet](https://github.com/LucxMangaJet) for helping me create the first version!
