@@ -22,4 +22,4 @@ I used it for my research and hope it will be helpful for others too.
  5. It will create a CSV file with the results called "leaf_damage.csv"
 
 ## Credits
-Thanks to [LucxMangaJet](https://github.com/LucxMangaJet) for helping me create the first version!
+Thanks to [LucxMangaJet](https://github.com/LucxMangaJet) for creating the first version!
