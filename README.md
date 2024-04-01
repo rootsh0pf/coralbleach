@@ -1,5 +1,5 @@
 # CoralBleach
-This python script automatically counts pixels of certain colours from all photos in a folder and calculates coral bleaching paling and mortality.
+This python script automatically counts pixels of certain colours from all photos in a folder and calculates coral bleaching, paling and mortality.
 It is based on my old script [Folderleaf](https://github.com/rootsh0pf/folderleaf) for calculating leaf damage in the same way.
 I used it for my research and hope it will be helpful for others too.
 
