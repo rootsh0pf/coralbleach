@@ -56,12 +56,11 @@ else:
             
             # If there is no coral on the image
             if green_pixel_count + yellow_pixel_count + red_pixel_count + magenta_pixel_count == 0:
-                print(f"{idx+1}/{count}: {fileName} WARNING: No coral on the image.")
                 # Write row into CSV file
                 # Hard coral cover = 0 and all other values "NA"
                 writer.writerow([fileName, 0, "NA", "NA", "NA", "NA"])
                 # Print in console
-                print(f"{idx+1}/{count}: {fileName}  0  NA  NA  NA  NA")
+                print(f"{idx+1}/{count}: {fileName}  0  NA  NA  NA  NA  (no coral)")
                 warn_count += 1
             else:
                 # Calculate values from pixel counts
