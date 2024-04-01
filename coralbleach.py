@@ -2,7 +2,7 @@
 
 ## SETTINGS ################################################################
 # Accuracy of output (decimal places)
-accuracy = 3
+accuracy = 2
 ############################################################################
 
 
@@ -11,6 +11,11 @@ import cv2
 import os
 import csv
 import numpy as np
+
+# Define function for calculating total pixel count of an image
+def count_total_pixels(img):
+    height, width, _ = img.shape
+    return height * width
 
 # List all PNG files in the current folder
 files = [x for x in os.listdir() if x.lower().endswith('.png')]
@@ -22,12 +27,13 @@ count = len(files)
 if count == 0: print('No photos found in current folder. Make sure they are in PNG format!')
 else:
     # Create a CSV file to write the results
-    with open('leaf_damage.csv', 'w',  newline='') as csvfile:
+    with open('coralbleach_results.csv', 'w',  newline='') as csvfile:
         writer = csv.writer(csvfile)
 
         # Write a header row to the CSV file
-        writer.writerow(['Filename', 'TotalLeafArea', 'DamageArea', 'DamagePercent'])
-        print('Filename TotalLeafArea DamageArea DamagePercent')
+        writer.writerow(['Filename', 'HardCoralCover', 'Healthy', 'Paling', 'Bleached', 'Mortality'])
+        # Also print header row in console
+        print('Filename HardCoralCover Healthy Paling Bleached Mortality')
         
         # Initialise counter for warnings
         warn_count = 0
@@ -36,46 +42,39 @@ else:
             img = cv2.imread(files[idx])
             fileName = os.path.splitext(files[idx])[0]
 
-            #damage
+            #total
+            total_pixel_count = count_total_pixels(img)
+            #healthy
+            green_pixel_count = cv2.countNonZero(cv2.inRange(img, (0,254,0), (0,255,0)))
+            #paling
+            yellow_pixel_count = cv2.countNonZero(cv2.inRange(img, (0,254,254), (0,255,255)))
+            #bleached
             red_pixel_count = cv2.countNonZero(cv2.inRange(img, (0,0,254), (0,0,255)))
-            #leaf
-            blue_pixel_count = cv2.countNonZero(cv2.inRange(img, (254,0,0), (255,0,0)))
-            #reference square
+            #dead
             magenta_pixel_count = cv2.countNonZero(cv2.inRange(img, (254,0,254), (255,0,255)))
             
-            # Count number of scale squares to average them in case there are more than one
-            # Define lower and upper bounds for the color of interest (magenta)
-            lower_color = np.array([254,0,254])
-            upper_color = np.array([255,0,255])
-
-            # Create a mask based on the color threshold
-            mask = cv2.inRange(img, lower_color, upper_color)
-
-            # Find contours of objects in the mask
-            contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             
-            # Count the number of objects that match the color of interest
-            num_scales = len(contours)
-            
-            # Deal with some possible errors
-            if num_scales == 0 or magenta_pixel_count == 0:
-                print(f"{idx+1}/{count}: {fileName} WARNING: No scales detected")
-                warn_count += 1
-            elif blue_pixel_count == 0:
-                print(f"{idx+1}/{count}: {fileName} WARNING: No leaf detected")
+            # If there is no coral on the image
+            if green_pixel_count + yellow_pixel_count + red_pixel_count + magenta_pixel_count == 0:
+                print(f"{idx+1}/{count}: {fileName} WARNING: No coral on the image.")
+                # Write row into CSV file
+                # Hard coral cover = 0 and all other values "NA"
+                writer.writerow([fileName, 0, "NA", "NA", "NA", "NA"])
+                # Print in console
+                print(f"{idx+1}/{count}: {fileName}  0  NA  NA  NA  NA")
                 warn_count += 1
             else:
-                # Calculate average of scale sizes
-                magenta_pixel_count = magenta_pixel_count/num_scales
                 # Calculate values from pixel counts
-                total_leaf_area = round((red_pixel_count+blue_pixel_count)/(magenta_pixel_count/scale_size), accuracy)
-                damage_area = round(red_pixel_count/(magenta_pixel_count/scale_size), accuracy)
-                damage_percent = round(red_pixel_count/(blue_pixel_count+red_pixel_count)*100, accuracy)
+                hard_coral_cover = round((green_pixel_count+yellow_pixel_count+red_pixel_count+magenta_pixel_count)/total_pixel_count*100, accuracy)
+                healthy = round(green_pixel_count/total_pixel_count*100, accuracy)
+                paling = round(yellow_pixel_count/total_pixel_count*100, accuracy)
+                bleached = round(red_pixel_count/total_pixel_count*100, accuracy)
+                mortality = round(magenta_pixel_count/total_pixel_count*100, accuracy)
                 # Write row into CSV file
-                writer.writerow([fileName, total_leaf_area, damage_area, damage_percent])
+                writer.writerow([fileName, hard_coral_cover, healthy, paling, bleached, mortality])
                 # Print in console
-                print(f"{idx+1}/{count}: {fileName} {total_leaf_area} {damage_area} {damage_percent}")
+                print(f"{idx+1}/{count}: {fileName} {hard_coral_cover} {healthy} {paling}, {bleached}, {mortality}")
         
         # Report warnings
         if warn_count == 0: print("Success!")
-        else: print(f"Done. But {warn_count} photos skipped with warnings.")
+        else: print(f"Done. But {warn_count} photos showed no coral. NAs introduced.")
