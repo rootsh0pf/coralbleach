@@ -7,8 +7,8 @@ I used it for my research and hope it will be helpful for others too.
  1. Install the python library "opencv"
  2. Take photos of corals
  3. Open photos one by one in GIMP or a similar photo editor
- 2. If you use a quadrant, crop photos to quadrant size
- 2. Paint your photos using EXACTLY the following colours (R, G, B):
+ 4. If you use a quadrant, crop photos to quadrant size
+ 5. Paint your photos using EXACTLY the following colours (R, G, B):
        
        Healthy Coral:   Green    (000, 255, 000)
        
@@ -19,7 +19,9 @@ I used it for my research and hope it will be helpful for others too.
        Dead Coral:      Magenta  (255, 000, 255)
        
        (Hint: The "fuzzy select"/magic wand tool of GIMP is super helpful for selecting regions of similar colour.)
- 3. Save images in PNG file format, all in one folder
- 4. Download the script "coralbleach.py"
- 5. Run the script in the folder containing the photos
- 5. It will create a CSV file with the results called "coralbleach_results.csv"
+ 6. Save images in PNG file format, all in one folder
+ 7. Download the script "coralbleach.py"
+ 8. Run the script in the folder containing the photos
+ 9. It will create a CSV file with the results called "coralbleach_results.csv"
+ 
+ Results are given as percent of the whole image area.
