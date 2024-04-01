@@ -4,23 +4,22 @@ It is based on my old script [Folderleaf](https://github.com/rootsh0pf/folderlea
 I used it for my research and hope it will be helpful for others too.
 
 ## How to use it
- 1. Take photos of leaves and place a calibration object of known size in the image (e.g. a black 1 x 1 cm square, see example photos)
  1. Install the python library "opencv"
- 2. Paint your leaf photos using EXACTLY the following colours (R, G, B):
- 
-       Calibration objects:  Magenta (255, 000, 255)
+ 2. Take photos of corals
+ 3. Open photos one by one in GIMP or a similar photo editor
+ 2. If you use a quadrant, crop photos to quadrant size
+ 2. Paint your photos using EXACTLY the following colours (R, G, B):
        
-       Healthy leaf area:    Blue    (000, 000, 255)
+       Healthy Coral:   Green    (000, 255, 000)
        
-       Damaged area:         Red     (255, 000, 000)
+       Paling Coral:    Yellow   (255, 255, 000)
        
-       (The "fuzzy select"/magic wand tool of GIMP is super helpful for selecting regions of similar colour.)
+       Bleached Coral:  Red      (255, 000, 000)
        
- 3. Save images in PNG file format
- 4. Download the script "folderleaf.py"
- 4. Edit the script's "settings" section and set the size of your calibration object
+       Dead Coral:      Magenta  (255, 000, 255)
+       
+       (Hint: The "fuzzy select"/magic wand tool of GIMP is super helpful for selecting regions of similar colour.)
+ 3. Save images in PNG file format, all in one folder
+ 4. Download the script "coralbleach.py"
  5. Run the script in the folder containing the photos
- 5. It will create a CSV file with the results called "leaf_damage.csv"
-
-## Credits
-Thanks to [LucxMangaJet](https://github.com/LucxMangaJet) for creating the first version!
+ 5. It will create a CSV file with the results called "coralbleach_results.csv"
