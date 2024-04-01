@@ -1,24 +1,8 @@
 #!/usr/bin/python
 
-## README ##################################################################
-# 1. Install the python library "opencv"
-# 2. Paint your leaf photos using EXACTLY the following colours (R, G, B):
-#       Scales:             Magenta (255, 000, 255)
-#       Healthy leaf area:  Blue    (000, 000, 255)
-#       Damaged area:       Red     (255, 000, 000)
-# 3. Save them in PNG file format
-# 4. Run this script in the folder containing the photos
-# 5. It will create a CSV file called "leaf_damage.csv"
-############################################################################
-
-
 ## SETTINGS ################################################################
-# Set scale size.
-# It's unit will also be the output unit (eg. cm2).
-scale_size = 1
-
 # Accuracy of output (decimal places)
-accuracy = 4
+accuracy = 3
 ############################################################################
 
 
